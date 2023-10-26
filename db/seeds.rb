@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Message.create(greetings: 'Hello rails from seed-1')
+Message.create(greetings: 'Hello rails from seed-2')
+Message.create(greetings: 'Hello rails from seed-3')
