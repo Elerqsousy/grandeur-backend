@@ -7,7 +7,7 @@ class UnitsController < ApplicationController
   # GET /units
   def index
     @units = Unit.all || []
-    render json: {content: @units}
+    render json: { content: @units }
   end
 
   # GET /units/1
