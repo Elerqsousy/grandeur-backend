@@ -6,13 +6,9 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    @user_name = user_params.user[:name]
+    @user = findCreateUser(@user_name)
+    redirect_to root_path, notice: "Hello #{@user_name}!"
   end
 
   private
