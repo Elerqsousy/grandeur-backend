@@ -1,6 +1,9 @@
 class UnitsController < ApplicationController
   before_action :set_unit, only: %i[show update destroy]
 
+  # GET /units/new
+  def new; end
+
   # GET /units
   def index
     @units = Unit.all

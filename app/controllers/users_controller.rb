@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
-  # GET /users/:id
+  # GET /users/new
   def new; end
 
   # POST /users

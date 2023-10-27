@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Associations
   has_many :units, dependent: :destroy, foreign_key: :user_id
+  has_many :reservations, dependent: :destroy, foreign_key: :user_id
 
   # Attributes
   attribute :name, :text

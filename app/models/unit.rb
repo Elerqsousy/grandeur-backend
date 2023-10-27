@@ -1,6 +1,7 @@
 class Unit < ApplicationRecord
   # Associations
   belongs_to :user
+  has_many :reservations, dependent: :destroy, foreign_key: :unit_id
 
   # Attributes
   attribute name: :text
