@@ -1,14 +1,13 @@
 class UnitsController < ApplicationController
-  before_action :set_unit, only: %i[show update destroy]
+  # before_action :set_unit, only: %i[show update destroy]
 
   # GET /units/new
   def new; end
 
   # GET /units
   def index
-    @units = Unit.all
-
-    render json: @units
+    @units = Unit.all || []
+    render json: {content: @units}
   end
 
   # GET /units/1
@@ -44,9 +43,9 @@ class UnitsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_unit
-    @unit = Unit.find(params[:id])
-  end
+  # def set_unit
+  #   @unit = Unit.find(params[:id])
+  # end
 
   # Only allow a list of trusted parameters through.
   def unit_params
