@@ -14,12 +14,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_27_134910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "messages", force: :cascade do |t|
-    t.text "greetings"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "units", force: :cascade do |t|
     t.text "name", null: false
     t.text "description", default: "", null: false
