@@ -1,9 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[show update destroy]
 
-  # GET /reservations/new
-  def new; end
-
   # GET /reservations
   def index
     @reservations = Reservation.all
@@ -22,6 +19,15 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       render json: @reservation, status: :created, location: @reservation
+    else
+      render json: @reservation.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /reservations/1
+  def update
+    if @reservation.update(reservation_params)
+      render json: @reservation
     else
       render json: @reservation.errors, status: :unprocessable_entity
     end
