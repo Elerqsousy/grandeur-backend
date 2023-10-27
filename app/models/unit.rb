@@ -1,8 +1,8 @@
 class Unit < ApplicationRecord
-  #Associations
+  # Associations
   belongs_to :user
 
-  #Attributes
+  # Attributes
   attribute name: :text
   attribute description: :text
   attribute image: :text, array: true, default: []
@@ -10,7 +10,7 @@ class Unit < ApplicationRecord
   attribute type: :text
   attribute location: :text
 
-  #Validations
+  # Validations
   validate :name, presence: true, length: { maximum: 255 }
   validate :description, presence: true, length: { maximum: 255 }
   validate :image
