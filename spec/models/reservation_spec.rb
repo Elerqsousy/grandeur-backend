@@ -1,0 +1,14 @@
+require 'rails_helper'
+
+RSpec.describe Reservation, type: :model do
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:unit) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:user) }
+    it { should validate_presence_of(:unit) }
+    it { should validate_presence_of(:date) }
+  end
+end
