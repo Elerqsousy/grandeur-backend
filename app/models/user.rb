@@ -7,7 +7,7 @@ class User < ApplicationRecord
   attribute :name, :text
 
   # Validations
-  validates :name, presence: true, length: { maximum: 255 }
+  validate :name, presence: true, length: { maximum: 255 }
 
   def find_create_user(user_name)
     new_user = User.find_or_create_by!(name: user_name)
