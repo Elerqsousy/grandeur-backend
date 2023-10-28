@@ -49,6 +49,6 @@ class UnitsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def unit_params
-    params.require(:unit).permit(:name, :type, :price, :image, :description, :location)
+    params.require(:unit).permit(:name, :user_id, :unit_type, :price, :description, :location, image: [])
   end
 end

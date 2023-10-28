@@ -8,14 +8,16 @@ class Unit < ApplicationRecord
   attribute :description, :text
   attribute :image, :text, array: true, default: []
   attribute :price, :integer
-  attribute :type, :text
+  attribute :unit_type, :text
   attribute :location, :text
+  attribute :user_id, :integer
 
-  # Validations
+  # Validations (use 'validates' instead of 'validate')
   validates :name, presence: true, length: { maximum: 255 }
-  validates :description, presence: true, length: { maximum: 255 }
+  validates :user_id, presence: true
+  validates :description, presence: true, length: { maximum: 500 }
   validates :image, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
-  validates :type, presence: true, length: { maximum: 255 }
+  validates :unit_type, presence: true, length: { maximum: 55 }
   validates :location, presence: true, length: { maximum: 255 }
 end
