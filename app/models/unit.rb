@@ -14,7 +14,6 @@ class Unit < ApplicationRecord
   # Validations
   validates :name, presence: true, length: { maximum: 255 }
   validates :description, presence: true, length: { maximum: 255 }
-  validates :image, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :unit_type, presence: true, length: { maximum: 255 }
   validates :location, presence: true, length: { maximum: 255 }
