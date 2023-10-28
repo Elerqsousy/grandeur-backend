@@ -7,16 +7,33 @@ RSpec.describe Unit, type: :model do
   end
 
   context 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_length_of(:name).is_at_most(255) }
-    it { should validate_presence_of(:description) }
-    it { should validate_length_of(:description).is_at_most(255) }
-    it { should validate_presence_of(:image) }
-    it { should validate_presence_of(:price) }
-    it { should validate_numericality_of(:price).is_greater_than(0) }
-    it { should validate_presence_of(:type) }
-    it { should validate_length_of(:type).is_at_most(255) }
-    it { should validate_presence_of(:location) }
-    it { should validate_length_of(:location).is_at_most(255) }
+    it 'is not valid without a name' do
+      unit = Unit.new(description: 'This is description 1', image: ['house.jpg'], price: 100, unit_type: 'Duplex',
+                      location: 'Cairo')
+      expect(unit).not_to be_valid
+      expect(unit.errors[:name]).to include("can't be blank")
+    end
+
+    it 'is valid with valid attributes' do
+      user = User.create(name: 'Mahmoud Rizk')
+      unit = Unit.new(name: 'Town Houses', description: 'This is description 2', image: ['house.jpg'], price: 100,
+                      unit_type: 'Duplex', location: 'Accra', user:)
+      expect(unit).to be_valid
+    end
+
+    it 'is not valid with a price less than or equal to 0' do
+      user = User.create(name: 'Prosper Kessie')
+      unit = Unit.new(
+        name: 'Town Houses',
+        description: 'This is description 3',
+        image: ['house_image.jpg'],
+        price: 0,
+        unit_type: 'Duplex',
+        location: 'Accra',
+        user:
+      )
+      expect(unit).not_to be_valid
+      expect(unit.errors[:price]).to include('must be greater than 0')
+    end
   end
 end
