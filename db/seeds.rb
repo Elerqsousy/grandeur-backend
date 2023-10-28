@@ -7,6 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-Message.create(greetings: 'Hello rails from seed-1')
-Message.create(greetings: 'Hello rails from seed-2')
-Message.create(greetings: 'Hello rails from seed-3')
+User.create!(name: "Riz")
+Unit.create(name: "Appartment1", price: 500, unit_type: "Apartment", location: "bla bla bla", user_id: 1, description: 'adfhad')
+Unit.create(name: "Appartment2", price: 500, unit_type: "House", location: "bla bla bla", user_id: 1, description: 'adfhad')
+
+Reservation.create(unit_id:1, user_id:1, date: '2023-12-02 10:15:35')
+Reservation.create(unit_id:2, user_id:1, date: '2023-11-04 10:15:35')
