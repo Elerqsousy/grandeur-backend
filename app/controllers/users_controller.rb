@@ -1,14 +1,52 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 
-  # GET /users/new
-  def new; end
+  # GET /users
+  def index
+    @users = User.all
+
+    render json: @users
+  end
+
+  # GET /users/1
+  def show
+    render json: @user
+  end
+
+  # POST /login
+  def login
+    @user = find_user
+
+    if @user
+      render json: @user, status: :ok
+    else
+      render json: { error: 'User not found' }, status: :not_found
+    end
+  end
 
   # POST /users
   def create
-    @user_name = user_params.user[:name]
-    @user = findCreateUser(@user_name)
-    redirect_to root_path, notice: "Hello #{@user_name}!"
+    @user = User.new(user_params)
+
+    if @user.save
+      render json: @user, status: :created
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /users/1
+  def update
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /users/1
+  def destroy
+    @user.destroy
   end
 
   private
@@ -18,8 +56,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def find_user
+    User.find_by(name: params[:name])
+  end
+
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:get, :create)
+    params.require(:user).permit(:name)
   end
 end
