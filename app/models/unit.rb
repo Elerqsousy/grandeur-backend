@@ -10,6 +10,7 @@ class Unit < ApplicationRecord
   attribute :price, :integer
   attribute :unit_type, :text
   attribute :location, :text
+  attribute :user_id, :integer
 
   # Validations
   validates :name, presence: true, length: { maximum: 255 }
