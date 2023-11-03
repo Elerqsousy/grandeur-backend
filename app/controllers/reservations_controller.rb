@@ -3,9 +3,10 @@ class ReservationsController < ApplicationController
 
   # GET /reservations
   def index
-    @reservations = Reservation.all
-
-    render json: @reservations
+    current_user_id = params[:user_id]
+    user = User.find(current_user_id)
+    @reservation = user.partitioned_reservations
+    render json: { reservations: @reservation }
   end
 
   # GET /reservations/1
