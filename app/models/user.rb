@@ -15,22 +15,24 @@ class User < ApplicationRecord
     past_reservations, future_reservations = reservations&.partition { |reservation| reservation.date < current_date }
 
     {
-      past: sort_past_reservations(past_reservations),
-      active: sort_future_reservations(future_reservations)
+      past: sort_reservations(past_reservations),
+      active: sort_reservations(future_reservations)
     }
   end
 
   private
 
-  def sort_past_reservations(reservations)
-    reservations&.map do |reservation|
-      reservation.attributes.merge(unit_details: reservation.unit, unit_owner: reservation.unit.user.name)
-    end || []
+  def unit_image(unit)
+    return unit.images.map { |image| url_for(image) } if unit.images.attached?
+
+    []
   end
 
-  def sort_future_reservations(reservations)
+  def sort_reservations(reservations)
     reservations&.map do |reservation|
-      reservation.attributes.merge(unit_details: reservation.unit)
+      unit_details = reservation.unit.attributes.merge(image_urls: unit_image(reservation.unit))
+      reservation.attributes.merge(unit_details:,
+                                   unit_owner: reservation.unit.user.name)
     end || []
   end
 end
