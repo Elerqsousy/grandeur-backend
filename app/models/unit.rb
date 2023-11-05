@@ -3,10 +3,11 @@ class Unit < ApplicationRecord
   belongs_to :user
   has_many :reservations, dependent: :destroy, foreign_key: :unit_id
 
+  has_many_attached :images
+
   # Attributes
   attribute :name, :text
   attribute :description, :text
-  attribute :image, :text, array: true, default: []
   attribute :price, :integer
   attribute :unit_type, :text
   attribute :location, :text
