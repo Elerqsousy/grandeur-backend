@@ -31,7 +31,7 @@ module GrandeurBackend
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins ".http://localhost:3001"
+        origins "http://localhost:3001", "http://127.0.0.1:3001", "https://grandeur-tx4o.onrender.com"
     
         resource "*",
           headers: :any,
