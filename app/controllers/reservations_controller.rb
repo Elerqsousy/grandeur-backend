@@ -48,6 +48,6 @@ class ReservationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reservation_params
-    params.fetch(:reservation, {})
+    params.require(:reservation).permit(:user_id, :unit_id, :date)
   end
 end
