@@ -52,4 +52,16 @@ RSpec.describe ReservationsController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH/PUT #update' do
+    it 'updates the reservation' do
+      reservation = create(:reservation, user:)
+      new_date = Date.tomorrow
+      put :update, params: { id: reservation.id, reservation: { date: new_date } }
+      reservation.reload
+      expect(reservation.date).to eq(new_date)
+      expect(response).to have_http_status(:ok)
+      expect(response.content_type).to include('application/json')
+    end
+  end
 end
