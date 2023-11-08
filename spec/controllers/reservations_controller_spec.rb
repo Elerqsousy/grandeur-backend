@@ -25,4 +25,31 @@ RSpec.describe ReservationsController, type: :controller do
       expect(assigns(:reservation)).to eq(reservation)
     end
   end
+
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      let(:user) { User.create(name: 'Prosper Kessie') }
+      it 'creates a new reservation' do
+        unit = create(:unit, user:)
+        valid_params = { user_id: user.id, unit_id: unit.id, date: Date.tomorrow }
+
+        expect do
+          post :create, params: { reservation: valid_params }
+        end.to change(Reservation, :count).by(1)
+
+        expect(response).to have_http_status(:created)
+        expect(response.content_type).to include('application/json')
+        expect(assigns(:reservation).user_id).to eq(user.id)
+      end
+    end
+
+    context 'with invalid attributes' do
+      it 'returns unprocessable entity status' do
+        invalid_params = { user_id: user.id, unit_id: nil, date: nil }
+        post :create, params: { reservation: invalid_params }
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.content_type).to include('application/json')
+      end
+    end
+  end
 end
