@@ -29,4 +29,18 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe 'POST #create' do
+    it 'creates a new user and returns a successful response' do
+      user_params = { name: 'Mahmoud Rizk' }
+      post :create, params: { user: user_params }
+      expect(response).to have_http_status(:created)
+    end
+
+    it 'returns unprocessable entity response when user creation fails' do
+      user_params = { name: '' }
+      post :create, params: { user: user_params }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
 end
