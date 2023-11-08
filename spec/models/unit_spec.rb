@@ -8,7 +8,7 @@ RSpec.describe Unit, type: :model do
 
   context 'validations' do
     it 'is not valid without a name' do
-      unit = Unit.new(description: 'This is description 1', image: ['house.jpg'], price: 100, unit_type: 'Duplex',
+      unit = Unit.new(description: 'This is description 1', price: 100, unit_type: 'Duplex',
                       location: 'Cairo')
       expect(unit).not_to be_valid
       expect(unit.errors[:name]).to include("can't be blank")
@@ -16,7 +16,7 @@ RSpec.describe Unit, type: :model do
 
     it 'is valid with valid attributes' do
       user = User.create(name: 'Mahmoud Rizk')
-      unit = Unit.new(name: 'Town Houses', description: 'This is description 2', image: ['house.jpg'], price: 100,
+      unit = Unit.new(name: 'Town Houses', description: 'This is description 2', price: 100,
                       unit_type: 'Duplex', location: 'Accra', user:)
       expect(unit).to be_valid
     end
@@ -26,7 +26,6 @@ RSpec.describe Unit, type: :model do
       unit = Unit.new(
         name: 'Town Houses',
         description: 'This is description 3',
-        image: ['house_image.jpg'],
         price: 0,
         unit_type: 'Duplex',
         location: 'Accra',
