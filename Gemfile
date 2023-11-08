@@ -53,3 +53,6 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
 end
+
+gem 'rswag-api'
+gem 'rswag-ui'
