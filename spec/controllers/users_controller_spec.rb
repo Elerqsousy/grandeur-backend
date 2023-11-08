@@ -43,4 +43,20 @@ RSpec.describe UsersController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
+
+  describe 'PATCH #update' do
+    let(:user) { User.create(name: 'Test User') }
+
+    it 'returns a successful response when user is updated' do
+      user_params = { name: 'Mohammed' }
+      patch :update, params: { id: user.id, user: user_params }
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'returns unprocessable entity response when user update fails' do
+      user_params = { name: '' }
+      patch :update, params: { id: user.id, user: user_params }
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
 end
