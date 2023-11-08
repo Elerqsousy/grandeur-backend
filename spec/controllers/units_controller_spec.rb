@@ -32,5 +32,13 @@ RSpec.describe UnitsController, type: :controller do
         expect(response.content_type).to include('application/json')
       end
     end
+
+    context 'with invalid attributes' do
+      it 'returns unprocessable entity status' do
+        post :create, params: { unit: { name: '' } }
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.content_type).to include('application/json')
+      end
+    end
   end
 end
