@@ -64,4 +64,15 @@ RSpec.describe ReservationsController, type: :controller do
       expect(response.content_type).to include('application/json')
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'deletes the reservation' do
+      reservation = create(:reservation, user:)
+      expect do
+        delete :destroy, params: { id: reservation.id }
+      end.to change(Reservation, :count).by(-1)
+
+      expect(response).to have_http_status(:no_content)
+    end
+  end
 end
