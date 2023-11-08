@@ -18,4 +18,19 @@ RSpec.describe UnitsController, type: :controller do
       expect(response.content_type).to include('application/json')
     end
   end
+
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      it 'creates a new unit' do
+        user = create(:user)
+        unit_params = attributes_for(:unit, user_id: user.id)
+        expect do
+          post :create, params: { unit: unit_params }
+        end.to change(Unit, :count).by(1)
+
+        expect(response).to have_http_status(:created)
+        expect(response.content_type).to include('application/json')
+      end
+    end
+  end
 end
