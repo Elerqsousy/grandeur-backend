@@ -6,7 +6,7 @@ class UnitsController < ApplicationController
 
   # GET /units
   def index
-    @units = Unit.all
+    @units = Unit.order('created_at DESC')
 
     units_data = @units.map do |unit|
       unit_data = unit.as_json
