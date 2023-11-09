@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: grandeur_backend_development
+  username: postgres
+  password: 2362
+
+test:
+  <<: *default
+  database: grandeur_backend_test
+  username: postgres
+  password: 2362
+
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  database: grandeur_backend_production
+  username: grandeur_backend
+  password: <%= ENV["GRANDEUR_BACKEND_DATABASE_PASSWORD"] %>
