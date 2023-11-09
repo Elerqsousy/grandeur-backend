@@ -199,6 +199,11 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
+    rswag-api (2.11.0)
+      railties (>= 3.1, < 7.2)
+    rswag-ui (2.11.0)
+      actionpack (>= 3.1, < 7.2)
+      railties (>= 3.1, < 7.2)
     ruby-vips (2.2.0)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -237,6 +242,8 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.1.1)
   rspec-rails
+  rswag-api
+  rswag-ui
   shoulda-matchers
   sprockets-rails
   tzinfo-data
