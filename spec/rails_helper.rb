@@ -1,8 +1,10 @@
 require 'spec_helper'
 require 'shoulda/matchers'
+require 'factory_bot_rails'
+require File.expand_path('../config/environment', __dir__)
+require 'rails-controller-testing'
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -21,6 +23,7 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.include FactoryBot::Syntax::Methods
   config.filter_rails_from_backtrace!
 end
 
