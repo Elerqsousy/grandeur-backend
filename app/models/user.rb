@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   # Associations
   has_many :units, dependent: :destroy, foreign_key: :user_id
   has_many :reservations, dependent: :destroy, foreign_key: :user_id
