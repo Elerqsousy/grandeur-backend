@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ReservationsController, type: :controller do
   let(:user) { create(:user) }
   let(:unit) { create(:unit) }
-  
+
   describe 'GET #index' do
     it 'returns a JSON response with a list of reservations for the specified user' do
       user = create(:user)
