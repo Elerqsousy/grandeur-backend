@@ -2,12 +2,13 @@ require 'rails_helper'
 
 RSpec.describe ReservationsController, type: :controller do
   let(:user) { create(:user) }
-
+  let(:unit) { create(:unit) }
+  
   describe 'GET #index' do
     it 'returns a JSON response with a list of reservations for the specified user' do
       user = create(:user)
-
-      create_list(:reservation, 5, user:)
+      unit = create(:unit, user:)
+      create_list(:reservation, 5, user:, unit:)
       get :index, params: { user_id: user.id }, format: :json
 
       expect(response).to have_http_status(:ok)
@@ -18,7 +19,8 @@ RSpec.describe ReservationsController, type: :controller do
 
   describe 'GET #show' do
     it 'returns a JSON response with the reservation details' do
-      reservation = create(:reservation, user:)
+      unit = create(:unit, user:)
+      reservation = create(:reservation, user:, unit:)
       get :show, params: { id: reservation.id }
       expect(response).to have_http_status(:ok)
       expect(response.content_type).to include('application/json')
@@ -55,7 +57,8 @@ RSpec.describe ReservationsController, type: :controller do
 
   describe 'PATCH/PUT #update' do
     it 'updates the reservation' do
-      reservation = create(:reservation, user:)
+      unit = create(:unit, user:)
+      reservation = create(:reservation, user:, unit:)
       new_date = Date.tomorrow
       put :update, params: { id: reservation.id, reservation: { date: new_date } }
       reservation.reload
@@ -67,7 +70,8 @@ RSpec.describe ReservationsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'deletes the reservation' do
-      reservation = create(:reservation, user:)
+      unit = create(:unit, user:)
+      reservation = create(:reservation, user:, unit:)
       expect do
         delete :destroy, params: { id: reservation.id }
       end.to change(Reservation, :count).by(-1)
