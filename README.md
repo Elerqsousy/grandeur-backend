@@ -55,6 +55,13 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 [liveDemo](https://grandeur-tx4o.onrender.com/)
 
+## KanBan Board
+[KanBan Project link](https://github.com/users/Elerqsousy/projects/2/views/1)
+
+[Initial Kanban Board state](https://user-images.githubusercontent.com/70639893/278134894-ad3cb736-d201-48a2-add0-d1a3e300f800.png)
+
+**Our team was comprised of 3 developers @Aimable BANCUNGUYE, @Abdul Ali Noori, @gisa chris**
+
 
 > ## 🔗 Frontend Link <a name="documentation"></a>
   > _The [Grandeur-Frontend](https://github.com/Elerqsousy/grandeur-frontend) is built using React and Redux and is hosted on a separate repository. The front end handles the user interface and integrates with this backend API to retrieve and display data. To access our frontend repository, please click [here](https://github.com/Elerqsousy/grandeur-frontend)._
@@ -136,6 +143,12 @@ To run the project, execute the following command:
 ```
 
 it will run the server on ```localhost:3000```
+
+To run the tests, execute the following command:
+
+```
+  rspec
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
