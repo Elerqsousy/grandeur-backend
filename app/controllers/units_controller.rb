@@ -57,6 +57,9 @@ class UnitsController < ApplicationController
   # DELETE /units/1
   def destroy
     @unit.destroy!
+    render json: { message: 'Unit successfully destroyed' }
+  rescue StandardError => e
+    render json: { error: "Failed to destroy unit: #{e.message}" }, status: :unprocessable_entity
   end
 
   private

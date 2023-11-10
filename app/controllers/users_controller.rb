@@ -47,6 +47,9 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+    render json: { message: 'User successfully destroyed' }
+  rescue StandardError => e
+    render json: { error: "Failed to destroy user: #{e.message}" }, status: :unprocessable_entity
   end
 
   private
