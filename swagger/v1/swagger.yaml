@@ -1,0 +1,185 @@
+openapi: 3.0.1
+info:
+  title: Grandeur API
+  version: v1
+paths:
+  '/units':
+    get:
+      summary: List all units
+      tags:
+        - Units
+      description: List all units
+      security:
+        - Bearer: {}
+      responses:
+        '200':
+          description: List of Units
+    post:
+      summary: Create a new unit
+      tags:
+        - Units
+      parameters: []
+      responses:
+        '201':
+          description: Unit created
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: integer
+                unit_type:
+                  type: string
+                location:
+                  type: string
+              required:
+                - name
+                - description
+                - price
+                - unit_type
+                - location
+  '/units/id':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Show Unit details
+      tags:
+        - Units
+      description: Show Unit details
+      security:
+        - Bearer: {}
+      responses:
+        '200':
+          description: Unit details
+        '404':
+          description: Unit not found
+    delete:
+      summary: Delete a unit
+      tags:
+        - Units
+      parameters: []
+      responses:
+        '200':
+          description: Delete successfully
+        '422':
+          description: Delete failed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                removed:
+                  type: boolean
+              required:
+                - removed
+  '/reservations':
+    get:
+      summary: List all reservations
+      tags:
+        - Reservations
+      description: List all reservations
+      security:
+        - Bearer: {}
+      responses:
+        '200':
+          description: List of reservations
+    post:
+      summary: Create a new reservation
+      tags:
+        - Reservations
+      parameters: []
+      responses:
+        '201':
+          description: Reservation created
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                unit_id:
+                  type: integer
+                user_id:
+                  type: integer
+                location:
+                  type: integer
+                date:
+                  type: string
+                  format: date
+              required:
+                - unit_id
+                - user_id
+                - location
+                - date
+  '/reservations/id':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Show reservation details
+      tags:
+        - Reservations
+      description: Show reservation details
+      security:
+        - Bearer: {}
+      responses:
+        '200':
+          description: Reservation details
+        '404':
+          description: Reservation not found
+
+  '/users':
+    get:
+      summary: List all users
+      tags:
+        - Users
+      description: List all users
+      security:
+        - Bearer: {}
+      responses:
+        '200':
+          description: List of users
+    post:
+      summary: Create a new user
+      tags:
+        - Users
+      parameters: []
+      responses:
+        '201':
+          description: User created
+        '422':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+                - name
+
+servers:
+  - url: https://{defaultHost}
+    variables:
+      defaultHost:
+        default: 127.0.0.1:3000
