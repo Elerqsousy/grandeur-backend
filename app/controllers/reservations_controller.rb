@@ -37,6 +37,9 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1
   def destroy
     @reservation.destroy!
+    head :no_content
+  rescue StandardError => e
+    render json: { error: "Failed to destroy reservation: #{e.message}" }, status: :unprocessable_entity
   end
 
   private
